@@ -22,7 +22,7 @@ export default function Contact({ lang = "en" }: { lang?: "en" | "sq" }) {
       sending: "Sending...",
       info: {
         title: "Get in Touch",
-        email: "hello@webcraft.com",
+        email: "hello@webolff.com",
         phone: "+355 123 456 789",
         response: "We'll respond within 24 hours",
       },
@@ -39,7 +39,7 @@ export default function Contact({ lang = "en" }: { lang?: "en" | "sq" }) {
       sending: "Duke dërguar...",
       info: {
         title: "Kontaktoni me Ne",
-        email: "hello@webcraft.com",
+        email: "hello@webolff.com",
         phone: "+355 123 456 789",
         response: "Do t'u përgjigjemi brenda 24 orëve",
       },

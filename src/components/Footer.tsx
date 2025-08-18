@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="mt-6 space-y-3">
             <div className="text-white font-medium text-sm mb-2">Contact</div>
             <a
-              href="mailto:hello@webcraft.com"
+              href="mailto:hello@webolf.com"
               className="flex items-center gap-2 text-sm text-gray-400 hover:text-lime-400 transition-colors"
             >
               <svg
@@ -27,7 +27,7 @@ export default function Footer() {
                   d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              hello@webcraft.com
+              hello@webolf.com
             </a>
             <a
               href="tel:+355123456789"

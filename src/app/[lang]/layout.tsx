@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    default: "WebCraft — Neon web agency",
-    template: "%s | WebCraft",
+    default: "Webolf",
+    template: "%s | Webolf",
   },
 };
 

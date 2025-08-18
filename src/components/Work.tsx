@@ -1,33 +1,194 @@
 export default function Work({ lang = "en" }: { lang?: "en" | "sq" }) {
   const t = {
-    en: { heading: "Selected Work" },
-    sq: { heading: "Punë të Zgjedhura" },
+    en: {
+      heading: "Our Work",
+      subheading: "Featured Project",
+      blurb:
+        "As a fresh and innovative web agency, we're proud to showcase our first major project - a comprehensive medical clinic website that demonstrates our commitment to quality and modern design.",
+      project: {
+        title: "Egian by Intermedica",
+        results: [
+          "50% increase in online appointments",
+          "40% improvement in user engagement",
+          "100% mobile responsive design",
+          "95+ Google PageSpeed score",
+        ],
+        websiteUrl: "https://medicareplus-demo.com",
+        status: "Live & Active",
+      },
+      cta: {
+        title: "Ready to Start Your Project?",
+        description:
+          "We're excited to bring the same level of dedication and innovation to your next project. Let's create something amazing together.",
+        button: "Get Started",
+        contact: "Contact Us",
+      },
+    },
+    sq: {
+      heading: "Puna Jonë",
+      subheading: "Projekti i Zgjedhur",
+      blurb:
+        "Si një agjenci web e re dhe inovative, jemi krenarë të paraqesim projektin tonë të parë të madh - një faqe të plotë të klinikës mjekësore që demonstron angazhimin tonë ndaj cilësisë dhe dizajnit modern.",
+      project: {
+        title: "Egian by Intermedica",
+        results: [
+          "50% rritje në takime online",
+          "40% përmirësim në angazhimin e përdoruesve",
+          "100% dizajn përgjigjes mobile",
+          "95+ rezultat Google PageSpeed",
+        ],
+        websiteUrl: "https://medicareplus-demo.com",
+        status: "Live & Aktive",
+      },
+      cta: {
+        title: "Gati për të Filluar Projektin Tuaj?",
+        description:
+          "Jemi të emocionuar të sillim të njëjtin nivel përkushtimi dhe inovacioni në projektin tuaj të ardhshëm. Le të krijojmë diçka të mrekullueshme së bashku.",
+        button: "Fillo",
+        contact: "Na Kontaktoni",
+      },
+    },
   }[lang];
 
-  const projects = [
-    { name: "Neon Studio", tag: "Brand site" },
-    { name: "LimeShop", tag: "E‑commerce" },
-    { name: "Volt SaaS", tag: "Marketing" },
-  ];
-
   return (
-    <section className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">
-          <span className="bg-gradient-to-r from-lime-400 via-green-500 to-lime-300 bg-clip-text text-transparent">
-            {t.heading}
-          </span>
-        </h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
-            <article
-              key={p.name}
-              className="rounded-xl border border-lime-500/30 bg-black/40 p-6 text-gray-200 hover:border-lime-400/60"
+    <section className="py-20 lg:py-24 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-to-l from-lime-400/10 via-transparent to-transparent rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-gradient-to-r from-green-500/10 via-transparent to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <p className="text-lime-400 font-medium text-sm uppercase tracking-wider mb-2">
+            {t.subheading}
+          </p>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <span className="bg-gradient-to-r from-lime-400 via-green-500 to-lime-300 bg-clip-text text-transparent">
+              {t.heading}
+            </span>
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            {t.blurb}
+          </p>
+        </div>
+
+        {/* Project Cards Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {/* Project Card */}
+          <div className="bg-black/40 border border-lime-500/20 rounded-xl p-6 backdrop-blur-sm shadow-[0_0_30px_rgba(163,230,53,0.1)] hover:shadow-[0_0_40px_rgba(163,230,53,0.15)] transition-all duration-300 mb-5">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="px-2 py-1 bg-green-500/10 border border-green-500/30 rounded-full text-green-300 text-xs font-medium">
+                {t.project.status}
+              </span>
+            </div>
+
+            <h3 className="text-xl font-bold text-white mb-4">
+              {t.project.title}
+            </h3>
+
+            {/* Impact Results */}
+            <div className="space-y-2 mb-4">
+              <h4 className="text-white font-medium text-sm">
+                {lang === "en" ? "Impact" : "Ndikimi"}
+              </h4>
+              {t.project.results.map((result, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-lime-500/10 border border-lime-500/30 rounded flex items-center justify-center">
+                    <svg
+                      className="w-2.5 h-2.5 text-lime-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-gray-300 text-sm">{result}</span>
+                </div>
+              ))}
+            </div>
+
+            <a
+              href={t.project.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-lime-500/40 bg-lime-500/10 px-4 py-2 text-lime-300 hover:bg-lime-500/20 hover:border-lime-400/60 focus:outline-none focus:ring-2 focus:ring-lime-400/50 transition-all duration-300 text-sm font-medium shadow-[0_0_15px_rgba(163,230,53,0.1)] hover:shadow-[0_0_20px_rgba(163,230,53,0.2)]"
             >
-              <h3 className="font-semibold text-white">{p.name}</h3>
-              <p className="text-sm text-gray-400">{p.tag}</p>
-            </article>
-          ))}
+              {lang === "en" ? "Visit Website" : "Vizito Faqen"}
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center">
+          <div className="bg-black/40 border border-lime-500/20 rounded-2xl p-8 lg:p-12 backdrop-blur-sm">
+            <h3 className="text-2xl lg:text-3xl font-semibold text-white mb-4">
+              {t.cta.title}
+            </h3>
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+              {t.cta.description}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={`/${lang}/contact`}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-lime-500/40 bg-lime-500/10 px-8 py-4 text-lime-300 hover:bg-lime-500/20 hover:border-lime-400/60 focus:outline-none focus:ring-2 focus:ring-lime-400/50 transition-all duration-300 font-medium shadow-[0_0_20px_rgba(163,230,53,0.1)] hover:shadow-[0_0_30px_rgba(163,230,53,0.2)]"
+              >
+                {t.cta.button}
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </a>
+              <a
+                href={`/${lang}/services`}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-600 bg-gray-800/50 px-8 py-4 text-gray-300 hover:bg-gray-700/50 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500/50 transition-all duration-300 font-medium"
+              >
+                {lang === "en" ? "View Services" : "Shiko Shërbimet"}
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

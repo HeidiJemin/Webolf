@@ -7,11 +7,12 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-poppins",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "WebCraft — Neon web agency",
-  description: "Black + neon green web agency website with EN/SQ locales",
+  title: "Webolf ",
+  description: "Web solutions agency  ",
 };
 
 export default function RootLayout({
@@ -21,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} antialiased font-sans`}>
+      <body className={`${poppins.variable} ${poppins.className} antialiased`}>
         <Navbar />
         {children}
       </body>
