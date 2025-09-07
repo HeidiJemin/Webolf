@@ -268,7 +268,7 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
               </svg>
             </Link>
             <Link
-              href={`/${lang}/work`}
+              href={`/${lang}/projects`}
               className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-8 py-4 text-white hover:bg-white/10 hover:border-white/40 transition-all duration-300 font-medium"
             >
               {t.ctaSecondary}

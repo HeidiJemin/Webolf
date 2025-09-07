@@ -89,7 +89,7 @@ export default function Services({ lang = "en" }: { lang?: "en" | "al" }) {
         {
           title: "SEO & Performanca",
           description:
-            "Rritni dukshmërinë tuaj online me strategjitë tona të plota SEO dhe optimizimin e performancës.",
+            "Rrisni prezencën tuaj online me strategjitë tona të plota SEO dhe optimizimin e performancës.",
           features: [
             "Kërkimi i Fjalëve Kyçe",
             "SEO në Faqe",
@@ -267,26 +267,6 @@ export default function Services({ lang = "en" }: { lang?: "en" | "al" }) {
                       </span>
                     </div>
                   ))}
-                </div>
-
-                {/* CTA Button */}
-                <div className="mt-8">
-                  <button className="inline-flex items-center gap-2 rounded-xl border border-lime-500/40 bg-lime-500/10 px-6 py-3 text-lime-300 hover:bg-lime-500/20 hover:border-lime-400/60 focus:outline-none focus:ring-2 focus:ring-lime-400/50 transition-all duration-300 text-sm font-medium shadow-[0_0_15px_rgba(163,230,53,0.1)] hover:shadow-[0_0_25px_rgba(163,230,53,0.2)]">
-                    {lang === "en" ? "Learn More" : "Mëso Më Shumë"}
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </svg>
-                  </button>
                 </div>
               </div>
             </div>

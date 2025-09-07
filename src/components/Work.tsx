@@ -100,13 +100,15 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
                 className="group bg-black/40 border border-lime-500/20 rounded-2xl overflow-hidden backdrop-blur-sm shadow-[0_0_30px_rgba(163,230,53,0.1)] hover:shadow-[0_0_40px_rgba(163,230,53,0.2)] transition-all duration-500 hover:border-lime-400/40"
               >
                 {/* Project Image */}
-                <div className="relative h-40 sm:h-56 md:h-72 overflow-hidden">
+                <div className="relative h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-top"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
+                    quality={95}
+                    priority={index === 0}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 </div>
@@ -131,13 +133,6 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
                     <p className="text-gray-300 text-sm leading-relaxed">
                       {project.description}
                     </p>
-                  </div>
-
-                  {/* Technologies */}
-                  <div className="mb-4">
-                    <h4 className="text-white font-medium text-sm mb-2">
-                      {lang === "en" ? "Technologies" : "Teknologjitë"}
-                    </h4>
                   </div>
 
                   {/* Impact Results */}
