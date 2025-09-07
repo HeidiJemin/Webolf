@@ -1,4 +1,4 @@
-export default function Services({ lang = "en" }: { lang?: "en" | "sq" }) {
+export default function Services({ lang = "en" }: { lang?: "en" | "al" }) {
   const t = {
     en: {
       heading: "Our Services",
@@ -13,22 +13,22 @@ export default function Services({ lang = "en" }: { lang?: "en" | "sq" }) {
           features: [
             "Responsive Design",
             "Modern UI/UX",
-            "Fast Loading",
+            "Performance Optimized",
             "SEO Ready",
           ],
           icon: "design",
         },
         {
-          title: "E-commerce Solutions",
+          title: "Web Applications",
           description:
-            "Complete online store development with payment integration, inventory management, and analytics.",
+            "Custom web applications tailored to your business needs with modern frameworks and robust functionality.",
           features: [
-            "Payment Integration",
-            "Inventory Management",
-            "Order Tracking",
-            "Analytics",
+            "Custom Development",
+            "Database Integration",
+            "User Authentication",
+            "API Development",
           ],
-          icon: "ecommerce",
+          icon: "app",
         },
         {
           title: "SEO & Performance",
@@ -56,7 +56,7 @@ export default function Services({ lang = "en" }: { lang?: "en" | "sq" }) {
         },
       ],
     },
-    sq: {
+    al: {
       heading: "Shërbimet Tona",
       subheading: "Çfarë Bëjmë",
       blurb:
@@ -69,22 +69,22 @@ export default function Services({ lang = "en" }: { lang?: "en" | "sq" }) {
           features: [
             "Dizajn Përgjigjes",
             "UI/UX Moderne",
-            "Ngarkim i Shpejtë",
+            "Optimizim Performance",
             "Gati për SEO",
           ],
           icon: "design",
         },
         {
-          title: "Zgjidhje E-commerce",
+          title: "Aplikacione Web",
           description:
-            "Zhvillim i plotë i dyqanit online me integrim pageash, menaxhim inventari dhe analitika.",
+            "Aplikacione web të personalizuara për nevojat e biznesit tuaj me kuadro moderne dhe funksionalitet të fortë.",
           features: [
-            "Integrim Pageash",
-            "Menaxhim Inventari",
-            "Ndjekje Porosish",
-            "Analitika",
+            "Zhvillim i Personalizuar",
+            "Integrim Databaze",
+            "Autentifikim Përdoruesish",
+            "Zhvillim API",
           ],
-          icon: "ecommerce",
+          icon: "app",
         },
         {
           title: "SEO & Performanca",
@@ -134,6 +134,22 @@ export default function Services({ lang = "en" }: { lang?: "en" | "sq" }) {
             />
             <circle cx="16.5" cy="9.5" r="1.5" />
             <circle cx="6.5" cy="9.5" r="1.5" />
+          </svg>
+        );
+      case "app":
+        return (
+          <svg
+            className={iconClass}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+            />
           </svg>
         );
       case "ecommerce":

@@ -1,4 +1,4 @@
-export default function Work({ lang = "en" }: { lang?: "en" | "sq" }) {
+export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
   const t = {
     en: {
       heading: "Our Work",
@@ -13,7 +13,7 @@ export default function Work({ lang = "en" }: { lang?: "en" | "sq" }) {
           "100% mobile responsive design",
           "95+ Google PageSpeed score",
         ],
-        websiteUrl: "https://medicareplus-demo.com",
+        websiteUrl: "https://egian.al",
         status: "Live & Active",
       },
       cta: {
@@ -24,7 +24,7 @@ export default function Work({ lang = "en" }: { lang?: "en" | "sq" }) {
         contact: "Contact Us",
       },
     },
-    sq: {
+    al: {
       heading: "Puna Jonë",
       subheading: "Projekti i Zgjedhur",
       blurb:

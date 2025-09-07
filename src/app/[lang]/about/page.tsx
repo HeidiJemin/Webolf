@@ -34,7 +34,7 @@ export default async function AboutPage({
       <div className="relative z-10">
         <About lang={_lang} />
         <Testimonials lang={_lang} />
-        <Footer />
+        <Footer lang={_lang} />
       </div>
     </main>
   );

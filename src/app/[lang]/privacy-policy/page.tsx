@@ -1,15 +1,16 @@
-import Work from "@/components/Work";
+import PrivacyPolicy from "@/components/PrivacyPolicy";
 import Footer from "@/components/Footer";
 import type { Locale } from "@/lib/i18n";
 import { isLocale, defaultLocale } from "@/lib/i18n";
 
-export default async function WorkPage({
+export default async function PrivacyPolicyPage({
   params,
 }: {
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
   const _lang: Locale = isLocale(lang) ? (lang as Locale) : defaultLocale;
+
   return (
     <main className="min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 bg-black">
@@ -31,8 +32,8 @@ export default async function WorkPage({
       </div>
 
       <div className="relative z-10">
-        <Work lang={_lang} />
-        <Footer />
+        <PrivacyPolicy lang={_lang} />
+        <Footer lang={_lang} />
       </div>
     </main>
   );

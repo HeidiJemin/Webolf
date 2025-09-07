@@ -1,9 +1,9 @@
-import Contact from "@/components/Contact";
+import Work from "@/components/Work";
 import Footer from "@/components/Footer";
 import type { Locale } from "@/lib/i18n";
 import { isLocale, defaultLocale } from "@/lib/i18n";
 
-export default async function ContactPage({
+export default async function WorkPage({
   params,
 }: {
   params: Promise<{ lang: string }>;
@@ -31,7 +31,7 @@ export default async function ContactPage({
       </div>
 
       <div className="relative z-10">
-        <Contact lang={_lang} />
+        <Work lang={_lang} />
         <Footer lang={_lang} />
       </div>
     </main>

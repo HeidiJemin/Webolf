@@ -13,7 +13,7 @@ export default async function Home({
   return (
     <main className="min-h-screen">
       <Hero lang={_lang} />
-      <Footer />
+      <Footer lang={_lang} />
     </main>
   );
 }

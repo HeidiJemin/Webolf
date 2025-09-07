@@ -32,7 +32,7 @@ export default async function ServicesPage({
 
       <div className="relative z-10">
         <Services lang={_lang} />
-        <Footer />
+        <Footer lang={_lang} />
       </div>
     </main>
   );

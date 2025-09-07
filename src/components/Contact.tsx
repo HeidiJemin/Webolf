@@ -1,171 +1,244 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
-export default function Contact({ lang = "en" }: { lang?: "en" | "sq" }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+export default function Contact({ lang = "en" }: { lang?: "en" | "al" }) {
+  const form = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const t = {
     en: {
-      heading: "Let's Build Something Amazing",
-
-      blurb:
-        "Ready to transform your vision into reality? Tell us about your project and let's create something extraordinary together.",
-      name: "Your Name",
-      email: "Email Address",
-      message: "Tell us about your project...",
-      send: "Send Message",
-      sending: "Sending...",
+      title: "Get in touch",
+      subtitle: "Ready to start your project? Let's talk.",
+      form: {
+        name: "Full Name",
+        email: "Email Address",
+        subject: "Subject",
+        message: "Message",
+        send: "Send Message",
+        sending: "Sending...",
+        success: "Message sent successfully! We'll get back to you soon.",
+        error: "Failed to send message. Please try again.",
+      },
       info: {
-        title: "Get in Touch",
-        email: "hello@webolff.com",
-        phone: "+355 123 456 789",
-        response: "We'll respond within 24 hours",
+        title: "Contact Information",
+        email: "info@webolf.al",
+        phone: "+355 69 123 4567",
+        response: "Response within 24 hours",
       },
     },
-    sq: {
-      heading: "Le të Ndërtojmë Diçka të Mrekullueshme",
-
-      blurb:
-        "Gati të transformoni vizionin tuaj në realitet? Na tregoni për projektin tuaj dhe le të krijojmë diçka të jashtëzakonshme së bashku.",
-      name: "Emri Juaj",
-      email: "Adresa Email",
-      message: "Na tregoni për projektin tuaj...",
-      send: "Dërgo Mesazhin",
-      sending: "Duke dërguar...",
+    al: {
+      title: "Na kontaktoni",
+      subtitle: "Gati të filloni projektin tuaj? Le të flasim.",
+      form: {
+        name: "Emri i Plotë",
+        email: "Adresa Email",
+        subject: "Subjekti",
+        message: "Mesazhi",
+        send: "Dërgo Mesazhin",
+        sending: "Duke dërguar...",
+        success: "Mesazhi u dërgua me sukses! Do t'ju përgjigjemi së shpejti.",
+        error: "Dështoi në dërgimin e mesazhit. Provoni përsëri.",
+      },
       info: {
-        title: "Kontaktoni me Ne",
-        email: "hello@webolff.com",
-        phone: "+355 123 456 789",
-        response: "Do t'u përgjigjemi brenda 24 orëve",
+        title: "Informacioni i Kontaktit",
+        email: "info@webolf.al",
+        phone: "+355 69 123 4567",
+        response: "Përgjigje brenda 24 orëve",
       },
     },
   }[lang];
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!form.current) return;
+
     setIsSubmitting(true);
+    setSubmitStatus("idle");
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      await emailjs.sendForm(
+        "service_9qd0rae", // Your EmailJS service ID
+        "template_5guhw8d", // Your EmailJS template ID
+        form.current,
+        "DNwMIs-IT1IKVZAiT" // Your EmailJS public key
+      );
 
-    setIsSubmitting(false);
-    setFormData({ name: "", email: "", message: "" });
+      setSubmitStatus("success");
+      form.current.reset();
+
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 5000);
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      setSubmitStatus("error");
+
+      // Hide error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section id="contact" className=" lg:pt-24 relative overflow-hidden">
-      {/* Background Effects */}
+    <section id="contact" className="py-20 lg:py-32 relative overflow-hidden">
+      {/* Background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-to-l from-lime-400/10 via-transparent to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-gradient-to-r from-green-500/10 via-transparent to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 left-0 w-full h-96 bg-gradient-to-r from-transparent via-lime-400/10 to-transparent -skew-y-12" />
+        <div className="absolute bottom-1/4 right-0 w-2/3 h-80 bg-gradient-to-l from-transparent via-green-500/10 to-transparent skew-y-6" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-            <span className="bg-gradient-to-r from-lime-400 via-green-500 to-lime-300 bg-clip-text text-transparent">
-              {t.heading}
-            </span>
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+            {t.title}
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            {t.blurb}
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            {t.subtitle}
           </p>
         </div>
 
-        {/* Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Contact Form */}
           <div className="order-2 lg:order-1">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="group">
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    {t.name}
-                  </label>
+            <div className="bg-black/40 border border-lime-500/20 rounded-2xl p-8 backdrop-blur-sm">
+              <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <input
+                      type="text"
+                      name="user_name"
+                      placeholder={t.form.name}
+                      required
+                      className="w-full px-4 py-3 bg-black/60 border border-lime-500/30 rounded-xl text-white placeholder-gray-400 focus:border-lime-500 focus:outline-none focus:ring-2 focus:ring-lime-500/20 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      name="user_email"
+                      placeholder={t.form.email}
+                      required
+                      className="w-full px-4 py-3 bg-black/60 border border-lime-500/30 rounded-xl text-white placeholder-gray-400 focus:border-lime-500 focus:outline-none focus:ring-2 focus:ring-lime-500/20 transition-all"
+                    />
+                  </div>
+                </div>
+
+                <div>
                   <input
                     type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
+                    name="subject"
+                    placeholder={t.form.subject}
                     required
-                    className="w-full rounded-xl bg-black/40 border border-lime-500/20 p-4 text-gray-100 placeholder:text-gray-500 focus:border-lime-400/60 focus:bg-black/60 focus:outline-none focus:ring-2 focus:ring-lime-400/20 transition-all duration-300 group-hover:border-lime-500/30"
-                    placeholder={t.name}
+                    className="w-full px-4 py-3 bg-black/60 border border-lime-500/30 rounded-xl text-white placeholder-gray-400 focus:border-lime-500 focus:outline-none focus:ring-2 focus:ring-lime-500/20 transition-all"
                   />
                 </div>
-                <div className="group">
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    {t.email}
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
+
+                <div>
+                  <textarea
+                    name="message"
+                    placeholder={t.form.message}
                     required
-                    className="w-full rounded-xl bg-black/40 border border-lime-500/20 p-4 text-gray-100 placeholder:text-gray-500 focus:border-lime-400/60 focus:bg-black/60 focus:outline-none focus:ring-2 focus:ring-lime-400/20 transition-all duration-300 group-hover:border-lime-500/30"
-                    placeholder={t.email}
+                    rows={6}
+                    className="w-full px-4 py-3 bg-black/60 border border-lime-500/30 rounded-xl text-white placeholder-gray-400 focus:border-lime-500 focus:outline-none focus:ring-2 focus:ring-lime-500/20 transition-all resize-none"
                   />
                 </div>
-              </div>
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  {t.message}
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  className="w-full rounded-xl bg-black/40 border border-lime-500/20 p-4 text-gray-100 placeholder:text-gray-500 focus:border-lime-400/60 focus:bg-black/60 focus:outline-none focus:ring-2 focus:ring-lime-400/20 transition-all duration-300 resize-none group-hover:border-lime-500/30"
-                  placeholder={t.message}
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-lime-500/40 bg-lime-500/10 px-8 py-4 text-lime-300 hover:bg-lime-500/20 hover:border-lime-400/60 focus:outline-none focus:ring-2 focus:ring-lime-400/50 transition-all duration-300 font-medium shadow-[0_0_20px_rgba(163,230,53,0.1)] hover:shadow-[0_0_30px_rgba(163,230,53,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-lime-400 border-t-transparent rounded-full animate-spin"></div>
-                    {t.sending}
-                  </>
-                ) : (
-                  <>
-                    {t.send}
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                      />
-                    </svg>
-                  </>
+
+                {/* Success Message */}
+                {submitStatus === "success" && (
+                  <div className="p-4 bg-lime-500/10 border border-lime-500/30 rounded-xl animate-in fade-in slide-in-from-bottom-2 duration-300">
+                    <div className="flex items-center gap-3">
+                      <div className="flex-shrink-0">
+                        <svg
+                          className="w-5 h-5 text-lime-400"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                      <p className="text-lime-400 text-sm font-medium">
+                        {t.form.success}
+                      </p>
+                    </div>
+                  </div>
                 )}
-              </button>
-            </form>
+
+                {/* Error Message */}
+                {submitStatus === "error" && (
+                  <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl animate-in fade-in slide-in-from-bottom-2 duration-300">
+                    <div className="flex items-center gap-3">
+                      <div className="flex-shrink-0">
+                        <svg
+                          className="w-5 h-5 text-red-400"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </div>
+                      <p className="text-red-400 text-sm font-medium">
+                        {t.form.error}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full px-8 py-4 bg-gradient-to-r from-lime-500 to-green-600 text-black font-semibold rounded-xl shadow-lg shadow-lime-500/25 hover:shadow-lime-500/40 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center gap-2">
+                      <svg
+                        className="animate-spin w-4 h-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                          className="opacity-25"
+                        />
+                        <path
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          className="opacity-75"
+                        />
+                      </svg>
+                      {t.form.sending}
+                    </div>
+                  ) : (
+                    t.form.send
+                  )}
+                </button>
+              </form>
+            </div>
           </div>
 
           {/* Contact Info */}
@@ -175,7 +248,8 @@ export default function Contact({ lang = "en" }: { lang?: "en" | "sq" }) {
                 {t.info.title}
               </h3>
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
+                {/* Email */}
+                <div className="flex items-center gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-lime-500/10 border border-lime-500/30 rounded-xl flex items-center justify-center">
                     <svg
                       className="w-5 h-5 text-lime-400"
@@ -192,9 +266,6 @@ export default function Contact({ lang = "en" }: { lang?: "en" | "sq" }) {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-gray-300 text-sm uppercase tracking-wide mb-1">
-                      Email
-                    </p>
                     <a
                       href={`mailto:${t.info.email}`}
                       className="text-white hover:text-lime-400 transition-colors font-medium"
@@ -203,7 +274,9 @@ export default function Contact({ lang = "en" }: { lang?: "en" | "sq" }) {
                     </a>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
+
+                {/* Phone */}
+                <div className="flex items-center gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-lime-500/10 border border-lime-500/30 rounded-xl flex items-center justify-center">
                     <svg
                       className="w-5 h-5 text-lime-400"
@@ -220,9 +293,6 @@ export default function Contact({ lang = "en" }: { lang?: "en" | "sq" }) {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-gray-300 text-sm uppercase tracking-wide mb-1">
-                      Phone
-                    </p>
                     <a
                       href={`tel:${t.info.phone}`}
                       className="text-white hover:text-lime-400 transition-colors font-medium"
@@ -231,7 +301,9 @@ export default function Contact({ lang = "en" }: { lang?: "en" | "sq" }) {
                     </a>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
+
+                {/* Response Time */}
+                <div className="flex items-center gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-lime-500/10 border border-lime-500/30 rounded-xl flex items-center justify-center">
                     <svg
                       className="w-5 h-5 text-lime-400"
@@ -248,9 +320,6 @@ export default function Contact({ lang = "en" }: { lang?: "en" | "sq" }) {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-gray-300 text-sm uppercase tracking-wide mb-1">
-                      Response Time
-                    </p>
                     <p className="text-white font-medium">{t.info.response}</p>
                   </div>
                 </div>

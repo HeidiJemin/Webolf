@@ -4,17 +4,17 @@ import { usePathname } from "next/navigation";
 import { useMemo, useState, useEffect, useRef } from "react";
 import Flag from "react-world-flags";
 
-function langFromPath(path: string): "en" | "sq" | null {
+function langFromPath(path: string): "en" | "al" | null {
   if (!path || path === "/") return null;
   const seg = path.split("/")[1];
-  if (seg === "en" || seg === "sq") return seg;
+  if (seg === "en" || seg === "al") return seg;
   return null;
 }
 
-function replaceLangInPath(pathname: string, target: "en" | "sq") {
+function replaceLangInPath(pathname: string, target: "en" | "al") {
   if (!pathname || pathname === "/") return `/${target}`;
   const parts = pathname.split("/");
-  if (parts[1] === "en" || parts[1] === "sq") {
+  if (parts[1] === "en" || parts[1] === "al") {
     parts[1] = target;
     return parts.join("/") || `/${target}`;
   }
@@ -70,7 +70,10 @@ export default function Navbar() {
         href: `/${lang}/services`,
         label: lang === "en" ? "Services" : "Shërbimet",
       },
-      { href: `/${lang}/work`, label: lang === "en" ? "Work" : "Punët" },
+      {
+        href: `/${lang}/projects`,
+        label: lang === "en" ? "Projects" : "Projekte",
+      },
       { href: `/${lang}/about`, label: lang === "en" ? "About" : "Rreth Nesh" },
       {
         href: `/${lang}/contact`,
@@ -85,7 +88,7 @@ export default function Navbar() {
       ? pathname === href
       : pathname === href || pathname.startsWith(href + "/");
   const enHref = replaceLangInPath(pathname, "en");
-  const sqHref = replaceLangInPath(pathname, "sq");
+  const alHref = replaceLangInPath(pathname, "al");
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-black/95 border-b border-lime-500/10">
@@ -165,7 +168,7 @@ export default function Navbar() {
                   code={lang === "en" ? "GB" : "AL"}
                   style={{ width: 16, height: 12 }}
                 />
-                <span className="uppercase">{lang}</span>
+                <span className="uppercase">{lang === "en" ? "EN" : "AL"}</span>
               </button>
               {langOpen && (
                 <div className="absolute right-0 top-full mt-2 w-44 rounded-xl border border-lime-500/20 bg-black p-1 shadow-[0_10px_30px_rgba(0,0,0,0.5)] opacity-100 scale-100 transition-all duration-150">
@@ -183,17 +186,17 @@ export default function Navbar() {
                     <span className="uppercase">EN</span>
                   </Link>
                   <Link
-                    href={sqHref}
+                    href={alHref}
                     onClick={() => setLangOpen(false)}
                     className={
                       "mt-1 flex items-center gap-2 rounded-lg px-2 py-2 text-sm " +
-                      (lang === "sq"
+                      (lang === "al"
                         ? "bg-lime-400/20 text-white"
                         : "text-gray-200 hover:text-black hover:bg-lime-400/90")
                     }
                   >
                     <Flag code="AL" style={{ width: 16, height: 12 }} />
-                    <span className="uppercase">SQ</span>
+                    <span className="uppercase">AL</span>
                   </Link>
                 </div>
               )}
@@ -237,17 +240,17 @@ export default function Navbar() {
                   <span className="uppercase">EN</span>
                 </Link>
                 <Link
-                  href={sqHref}
+                  href={alHref}
                   onClick={() => setMenuOpen(false)}
                   className={
                     "inline-flex items-center justify-center gap-2 rounded-full border border-lime-500/40 px-3 py-1.5 text-sm " +
-                    (lang === "sq"
+                    (lang === "al"
                       ? "bg-lime-400/90 text-black"
                       : "text-lime-300 hover:text-black hover:bg-lime-400/90")
                   }
                 >
                   <Flag code="AL" style={{ width: 16, height: 12 }} />
-                  <span className="uppercase">SQ</span>
+                  <span className="uppercase">AL</span>
                 </Link>
               </div>
             </div>

@@ -1,4 +1,4 @@
-export default function About({ lang = "en" }: { lang?: "en" | "sq" }) {
+export default function About({ lang = "en" }: { lang?: "en" | "al" }) {
   const t = {
     en: {
       heading: "About Webolf",
@@ -41,7 +41,7 @@ export default function About({ lang = "en" }: { lang?: "en" | "sq" }) {
           "Though we're a fresh face in the industry, our team combines years of individual experience with an entrepreneurial spirit that drives us to exceed expectations.",
         stats: [
           {
-            number: "3+",
+            number: "2+",
             label: "Years Experience",
             sublabel: "Per Developer",
           },
@@ -101,15 +101,15 @@ export default function About({ lang = "en" }: { lang?: "en" | "sq" }) {
         contact: "Get in Touch",
       },
     },
-    sq: {
+    al: {
       heading: "Rreth Webolf",
-      subtitle: "Vizione e Freskët, Duar të Përvojshme",
+      subtitle: "Vizioni Modern",
       intro:
         "Ne jemi një agjenci e re ueb me një vizion të guximshëm dhe ekspertizë të pjekur. Ekipi ynë i zhvilluesve sjell 3+ vjet përvojë, duke kombinuar perspektiva të freskëta me aftësi teknike të provuara për të ofruar zgjidhje të jashtëzakonshme biznesi dhe teknologjie.",
       mission: {
         title: "Misioni Ynë",
         description:
-          "Të fuqizojmë bizneset me zgjidhje ueb novatore që nxisin rritjen, përmirësojnë përvojën e përdoruesit dhe krijojnë ndikim të qëndrueshëm dixhital. Ne besojmë se teknologjia e mirë duhet të jetë e arritshme për të gjithë, nga startup-et deri tek ndërmarrjet e etabluara.",
+          "Të fuqizojmë bizneset me zgjidhje ueb novatore që nxisin rritjen, përmirësojnë përvojën e përdoruesit dhe krijojnë ndikim të qëndrueshëm dixhital. Ne besojmë se teknologjia e mirë duhet të jetë e arritshme për të gjithë, nga startup-et deri tek ndërmarrjet e mëdha.",
       },
       values: {
         title: "Çfarë Na Shtyn",
@@ -141,7 +141,7 @@ export default function About({ lang = "en" }: { lang?: "en" | "sq" }) {
         description:
           "Edhe pse jemi një fytyrë e re në industri, ekipi ynë kombinon vite përvojë individuale me një frymë sipërmarrëse që na shtyn të tejkalojmë pritshmëritë.",
         stats: [
-          { number: "3+", label: "Vjet Përvojë", sublabel: "Për Zhvillues" },
+          { number: "2+", label: "Vjet Përvojë", sublabel: "Për Zhvillues" },
           {
             number: "100%",
             label: "Kënaqësi Klienti",
@@ -186,7 +186,7 @@ export default function About({ lang = "en" }: { lang?: "en" | "sq" }) {
             step: "04",
             title: "Lançimi & Mbështetja",
             description:
-              "Ne sigurojmë vendosje të qetë dhe ofrojmë mbështetje të vazhdueshme për të mbajtur prezencën tuaj dixhitale duke punuar me performancë maksimale.",
+              "Ne sigurojmë fillim të suksesshëm dhe ofrojmë mbështetje të vazhdueshme për të mbajtur prezencën tuaj dixhitale duke punuar me performancë maksimale.",
           },
         ],
       },

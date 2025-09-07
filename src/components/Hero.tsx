@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
-export default function Hero({ lang = "en" }: { lang?: "en" | "sq" }) {
+export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
   const getIcon = (iconType: string) => {
     const iconClass = "w-6 h-6 text-lime-400";
 
@@ -81,12 +82,12 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "sq" }) {
     en: {
       title: "We craft bold web experiences",
       subtitle: "Modern websites, apps, and digital products that convert.",
-      cta: "Start a project",
+      ctaPrimary: "Start a project",
+      ctaSecondary: "Our projects",
       featuresTitle: "What we do",
       stats: [
         { label: "24/7 Support", value: "24/7" },
         { label: "Years Experience", value: "2+" },
-        { label: "Projects Delivered", value: "50+" },
       ],
       features: [
         {
@@ -111,16 +112,16 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "sq" }) {
         },
       ],
     },
-    sq: {
+    al: {
       title: "Krijojmë përvoja të guximshme në web",
       subtitle:
         "Faqe moderne, aplikacione dhe produkte digjitale që konvertojnë.",
-      cta: "Fillo një projekt",
+      ctaPrimary: "Fillo një projekt",
+      ctaSecondary: "Projektet tona",
       featuresTitle: "Çfarë bëjmë",
       stats: [
         { label: "Suport 24/7", value: "24/7" },
         { label: "Vite Përvojë", value: "2+" },
-        { label: "Projekte të Realizuara", value: "50+" },
       ],
       features: [
         {
@@ -213,26 +214,53 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "sq" }) {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-full border border-lime-500/40 bg-lime-500/10 px-8 py-4 text-lime-300 hover:bg-lime-500/20 hover:border-lime-400/60 transition-all duration-300 shadow-[0_0_20px_rgba(163,230,53,0.2)] hover:shadow-[0_0_30px_rgba(163,230,53,0.4)] font-medium"
-          >
-            {t.cta}
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 items-center">
+            <Link
+              href={`/${lang}/contact`}
+              className="inline-flex items-center gap-2 rounded-full border border-lime-500/40 bg-lime-500/10 px-8 py-4 text-lime-300 hover:bg-lime-500/20 hover:border-lime-400/60 transition-all duration-300 shadow-[0_0_20px_rgba(163,230,53,0.2)] hover:shadow-[0_0_30px_rgba(163,230,53,0.4)] font-medium"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-          </a>
+              {t.ctaPrimary}
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </Link>
+            <Link
+              href={`/${lang}/work`}
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-8 py-4 text-white hover:bg-white/10 hover:border-white/40 transition-all duration-300 font-medium"
+            >
+              {t.ctaSecondary}
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </Link>
+          </div>
         </motion.div>
 
         {/* Features grid */}
