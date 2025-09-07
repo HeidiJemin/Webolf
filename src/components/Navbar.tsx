@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useMemo, useState, useEffect, useRef } from "react";
 import Flag from "react-world-flags";
@@ -100,10 +101,13 @@ export default function Navbar() {
               href={`/${lang}`}
               className="flex items-center h-22 hover:opacity-80 transition-opacity"
             >
-              <img
+              <Image
                 src="/webolflogo.png"
                 alt="Webolf Logo"
+                width={88}
+                height={88}
                 className="h-22 w-22"
+                priority
               />
             </Link>
           </div>
@@ -141,20 +145,20 @@ export default function Navbar() {
               className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-lime-500/40 text-lime-300 hover:bg-lime-500/10 transition-all duration-200 relative z-10"
               aria-label="Toggle menu"
             >
-              <div className="relative w-5 h-5 pointer-events-none">
+              <div className="relative w-5 h-5 pointer-events-none flex flex-col justify-center">
                 <span
                   className={`absolute block h-0.5 w-5 bg-current transform transition-all duration-300 ease-in-out ${
-                    menuOpen ? "rotate-45 translate-y-2" : "translate-y-0"
+                    menuOpen ? "rotate-45" : "-translate-y-1.5"
                   }`}
                 />
                 <span
                   className={`absolute block h-0.5 w-5 bg-current transform transition-all duration-300 ease-in-out ${
-                    menuOpen ? "opacity-0" : "opacity-100 translate-y-1.5"
+                    menuOpen ? "opacity-0" : "opacity-100"
                   }`}
                 />
                 <span
                   className={`absolute block h-0.5 w-5 bg-current transform transition-all duration-300 ease-in-out ${
-                    menuOpen ? "-rotate-45 translate-y-2" : "translate-y-3"
+                    menuOpen ? "-rotate-45" : "translate-y-1.5"
                   }`}
                 />
               </div>

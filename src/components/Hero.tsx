@@ -1,8 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Small delay to ensure smooth hydration
+    const timer = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
   const getIcon = (iconType: string) => {
     const iconClass = "w-6 h-6 text-lime-400";
 
@@ -80,13 +88,13 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
 
   const t = {
     en: {
-      title: "We craft bold web experiences",
+      title: "We craft your digital presence",
       subtitle: "Modern websites, apps, and digital products that convert.",
       ctaPrimary: "Start a project",
       ctaSecondary: "Our projects",
       featuresTitle: "What we do",
       stats: [
-        { label: "24/7 Support", value: "24/7" },
+        { label: "Support", value: "24/7" },
         { label: "Years Experience", value: "2+" },
       ],
       features: [
@@ -113,14 +121,14 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
       ],
     },
     al: {
-      title: "Krijojmë përvoja të guximshme në web",
+      title: "Krijojmë prezencen tuaj dixhitale",
       subtitle:
-        "Faqe moderne, aplikacione dhe produkte digjitale që konvertojnë.",
+        "Faqe moderne, aplikacione dhe produkte digjitale të suksesshme.",
       ctaPrimary: "Fillo një projekt",
       ctaSecondary: "Projektet tona",
       featuresTitle: "Çfarë bëjmë",
       stats: [
-        { label: "Suport 24/7", value: "24/7" },
+        { label: "Suport", value: "24/7" },
         { label: "Vite Përvojë", value: "2+" },
       ],
       features: [
@@ -152,17 +160,31 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
     <section className="pt-28 pb-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-black">
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-1/4 left-0 w-full h-96 bg-gradient-to-r from-transparent via-lime-400/20 to-transparent -skew-y-12 animate-pulse opacity-60"></div>
-          <div className="absolute top-1/3 right-0 w-3/4 h-80 bg-gradient-to-l from-transparent via-green-500/15 to-transparent skew-y-6 animate-pulse delay-1000 opacity-40"></div>
+          <div
+            className="absolute top-1/4 left-0 w-full h-96 bg-gradient-to-r from-transparent via-lime-400/20 to-transparent -skew-y-12 opacity-60"
+            style={{
+              animation: mounted ? "pulse 2s ease-in-out infinite" : "none",
+            }}
+          ></div>
+          <div
+            className="absolute top-1/3 right-0 w-3/4 h-80 bg-gradient-to-l from-transparent via-green-500/15 to-transparent skew-y-6 opacity-40"
+            style={{
+              animation: mounted ? "pulse 2s ease-in-out infinite 1s" : "none",
+            }}
+          ></div>
         </div>
         <div className="absolute inset-0">
           <div
-            className="absolute top-1/2 left-1/4 w-2/3 h-64 bg-gradient-to-br from-lime-300/10 via-transparent to-green-600/10 rounded-full blur-3xl animate-bounce opacity-30"
-            style={{ animationDuration: "6s" }}
+            className="absolute top-1/2 left-1/4 w-2/3 h-64 bg-gradient-to-br from-lime-300/10 via-transparent to-green-600/10 rounded-full blur-3xl opacity-30"
+            style={{
+              animation: mounted ? "bounce 6s ease-in-out infinite" : "none",
+            }}
           />
           <div
-            className="absolute bottom-1/4 right-1/4 w-1/2 h-48 bg-gradient-to-tl from-emerald-400/15 via-transparent to-lime-500/15 rounded-full blur-2xl animate-bounce delay-2000 opacity-25"
-            style={{ animationDuration: "8s" }}
+            className="absolute bottom-1/4 right-1/4 w-1/2 h-48 bg-gradient-to-tl from-emerald-400/15 via-transparent to-lime-500/15 rounded-full blur-2xl opacity-25"
+            style={{
+              animation: mounted ? "bounce 8s ease-in-out infinite 2s" : "none",
+            }}
           />
         </div>
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/50 to-black opacity-80" />
@@ -173,7 +195,7 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
           className="text-5xl sm:text-6xl font-extrabold tracking-tight text-white"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: mounted ? 0 : 0.1 }}
         >
           <span className="bg-gradient-to-r from-lime-400 via-green-500 to-lime-300 bg-clip-text text-transparent">
             {t.title}
@@ -183,7 +205,7 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
           className="mt-6 text-lg text-gray-300 max-w-2xl mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          transition={{ delay: mounted ? 0.2 : 0.3, duration: 0.6 }}
         >
           {t.subtitle}
         </motion.p>
@@ -191,7 +213,7 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
           className="mt-10 flex flex-col items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: mounted ? 0.4 : 0.5 }}
         >
           {/* Stats badges */}
           <div className="flex flex-wrap justify-center gap-4 mb-6">
@@ -200,10 +222,20 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 + index * 0.1, duration: 0.4 }}
+                transition={{
+                  delay: mounted ? 0.5 + index * 0.1 : 0.6 + index * 0.1,
+                  duration: 0.4,
+                }}
                 className="group flex items-center gap-2 px-4 py-2 rounded-full border border-lime-500/30 bg-black/40 backdrop-blur-sm hover:border-lime-400/50 hover:bg-black/60 transition-all duration-300"
               >
-                <div className="w-2 h-2 bg-lime-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(163,230,53,0.6)]"></div>
+                <div
+                  className="w-2 h-2 bg-lime-400 rounded-full shadow-[0_0_8px_rgba(163,230,53,0.6)]"
+                  style={{
+                    animation: mounted
+                      ? "pulse 2s ease-in-out infinite"
+                      : "none",
+                  }}
+                ></div>
                 <span className="text-lime-300 font-medium text-sm group-hover:text-lime-200 transition-colors">
                   {stat.value}
                 </span>
@@ -271,7 +303,7 @@ export default function Hero({ lang = "en" }: { lang?: "en" | "al" }) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: i * 0.05 }}
+              transition={{ delay: mounted ? i * 0.05 : i * 0.1 }}
               className="group relative overflow-hidden rounded-xl border border-lime-500/20 bg-black/40 p-5 hover:border-lime-400/40 transition-all duration-300"
             >
               <div className="absolute -inset-px bg-gradient-to-br from-lime-400/0 via-lime-400/0 to-lime-400/0 group-hover:from-lime-400/10 group-hover:via-lime-400/0 group-hover:to-lime-400/10 transition-colors" />

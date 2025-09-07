@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
   const t = {
     en: {
@@ -91,34 +93,37 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
         </div>
         {/* Project Cards Grid */}
         <div className="flex justify-center mb-16">
-          <div className="grid lg:grid-cols-1 gap-8 max-w-4xl mx-auto">
+          <div className="grid lg:grid-cols-1 gap-6 max-w-4xl mx-auto w-full">
             {t.projects.map((project, index) => (
               <div
                 key={index}
                 className="group bg-black/40 border border-lime-500/20 rounded-2xl overflow-hidden backdrop-blur-sm shadow-[0_0_30px_rgba(163,230,53,0.1)] hover:shadow-[0_0_40px_rgba(163,230,53,0.2)] transition-all duration-500 hover:border-lime-400/40"
               >
                 {/* Project Image */}
-                <div className="relative h-80 overflow-hidden">
-                  <img
+                <div className="relative h-40 sm:h-56 md:h-72 overflow-hidden">
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 </div>
 
                 {/* Project Content */}
-                <div className="p-6">
+                <div className="p-4 sm:p-6">
                   <div className="mb-4">
-                    <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-lime-400 transition-colors">
+                    {/* Title and Badges - Stack on mobile */}
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                      <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-lime-400 transition-colors">
                         {project.title}
                       </h3>
-                      <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 bg-green-500/20 border border-green-500/40 rounded-full text-green-300 text-xs font-medium backdrop-blur-sm">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="px-2 sm:px-3 py-1 bg-green-500/20 border border-green-500/40 rounded-full text-green-300 text-xs font-medium backdrop-blur-sm">
                           {project.status}
                         </span>
-                        <span className="px-3 py-1 bg-lime-500/20 border border-lime-500/40 rounded-full text-lime-300 text-xs font-medium backdrop-blur-sm">
+                        <span className="px-2 sm:px-3 py-1 bg-lime-500/20 border border-lime-500/40 rounded-full text-lime-300 text-xs font-medium backdrop-blur-sm">
                           {project.category}
                         </span>
                       </div>
@@ -140,11 +145,11 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
                     <h4 className="text-white font-medium text-sm mb-3">
                       {lang === "en" ? "Key Results" : "Rezultatet Kryesore"}
                     </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 gap-3">
                       {project.results.map((result, resultIndex) => (
                         <div
                           key={resultIndex}
-                          className="flex items-start gap-2"
+                          className="flex items-start gap-3"
                         >
                           <div className="flex-shrink-0 w-4 h-4 bg-lime-500/10 border border-lime-500/30 rounded flex items-center justify-center mt-0.5">
                             <svg
@@ -161,7 +166,7 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
                               />
                             </svg>
                           </div>
-                          <span className="text-gray-300 text-sm leading-tight">
+                          <span className="text-gray-300 text-sm leading-relaxed">
                             {result}
                           </span>
                         </div>
@@ -174,7 +179,7 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
                     href={project.websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl border border-lime-500/40 bg-lime-500/10 px-6 py-3 text-lime-300 hover:bg-lime-500/20 hover:border-lime-400/60 focus:outline-none focus:ring-2 focus:ring-lime-400/50 transition-all duration-300 font-medium shadow-[0_0_15px_rgba(163,230,53,0.1)] hover:shadow-[0_0_25px_rgba(163,230,53,0.2)] group-hover:scale-105"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-lime-500/40 bg-lime-500/10 px-6 py-4 text-lime-300 hover:bg-lime-500/20 hover:border-lime-400/60 focus:outline-none focus:ring-2 focus:ring-lime-400/50 transition-all duration-300 font-medium shadow-[0_0_15px_rgba(163,230,53,0.1)] hover:shadow-[0_0_25px_rgba(163,230,53,0.2)] text-center"
                   >
                     {lang === "en" ? "View Live Site" : "Shiko Faqen Live"}
                     <svg

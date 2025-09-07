@@ -231,7 +231,7 @@ export default function Services({ lang = "en" }: { lang?: "en" | "al" }) {
 
         {/* Services Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
-          {t.services.map((service, index) => (
+          {t.services.map((service) => (
             <div
               key={service.title}
               className="group relative overflow-hidden rounded-2xl border border-lime-500/20 bg-black/40 p-8 backdrop-blur-sm hover:border-lime-400/40 transition-all duration-300 hover:bg-black/60"
