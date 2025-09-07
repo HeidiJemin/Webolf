@@ -50,7 +50,7 @@ export default function Testimonials({ lang = "en" }: { lang?: "en" | "al" }) {
               className="relative rounded-xl border border-lime-500/30 bg-black/40 backdrop-blur-sm p-6 text-gray-200 hover:border-lime-400/50 transition-all duration-300 max-w-lg w-full"
             >
               <div className="absolute top-4 left-6 text-lime-400/30 text-4xl font-serif">
-                "
+                &ldquo;
               </div>
               <p className="mb-6 mt-6 text-gray-200 leading-relaxed italic text-center">
                 {testimonial.quote}

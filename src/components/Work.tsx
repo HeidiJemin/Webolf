@@ -2,20 +2,28 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
   const t = {
     en: {
       heading: "Our Work",
-      subheading: "Featured Project",
+      subheading: "Featured Projects",
       blurb:
-        "As a fresh and innovative web agency, we're proud to showcase our first major project - a comprehensive medical clinic website that demonstrates our commitment to quality and modern design.",
-      project: {
-        title: "Egian by Intermedica",
-        results: [
-          "50% increase in online appointments",
-          "40% improvement in user engagement",
-          "100% mobile responsive design",
-          "95+ Google PageSpeed score",
-        ],
-        websiteUrl: "https://egian.al",
-        status: "Live & Active",
-      },
+        "Explore our portfolio of successful projects. From medical clinics to business websites, we create digital experiences that drive results.",
+      projects: [
+        {
+          title: "Egian by Intermedica",
+          description:
+            "Modern medical clinic website with appointment booking system",
+          image: "/egian.png",
+          category: "Healthcare",
+          results: [
+            "50% increase in online appointments",
+            "40% improvement in user engagement",
+            "100% mobile responsive design",
+            "95+ Google PageSpeed score",
+          ],
+
+          websiteUrl: "https://egian.al",
+          status: "Live & Active",
+        },
+        // You can add more projects here
+      ],
       cta: {
         title: "Ready to Start Your Project?",
         description:
@@ -26,20 +34,28 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
     },
     al: {
       heading: "Puna Jonë",
-      subheading: "Projekti i Zgjedhur",
+      subheading: "Projektet tona",
       blurb:
-        "Si një agjenci web e re dhe inovative, jemi krenarë të paraqesim projektin tonë të parë të madh - një faqe të plotë të klinikës mjekësore që demonstron angazhimin tonë ndaj cilësisë dhe dizajnit modern.",
-      project: {
-        title: "Egian by Intermedica",
-        results: [
-          "50% rritje në takime online",
-          "40% përmirësim në angazhimin e përdoruesve",
-          "100% dizajn përgjigjes mobile",
-          "95+ rezultat Google PageSpeed",
-        ],
-        websiteUrl: "https://medicareplus-demo.com",
-        status: "Live & Aktive",
-      },
+        "Eksploroni portofolon tonë të projekteve të suksesshme. Nga klinika mjekësore tek faqet e biznesit, krijojmë përvojë dixhitale që sjellin rezultate.",
+      projects: [
+        {
+          title: "Egian by Intermedica",
+          description:
+            "Faqe moderne klinike mjekësore me sistem rezervimi takimesh",
+          image: "/egian.png", // You can replace with actual project image
+          category: "Shëndetësi",
+          results: [
+            "50% rritje në takime online",
+            "40% përmirësim në angazhimin e përdoruesve",
+            "100% dizajn përgjigjes mobile",
+            "95+ rezultat Google PageSpeed",
+          ],
+
+          websiteUrl: "https://egian.al",
+          status: "Live & Aktive",
+        },
+        // You can add more projects here
+      ],
       cta: {
         title: "Gati për të Filluar Projektin Tuaj?",
         description:
@@ -73,31 +89,96 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
             {t.blurb}
           </p>
         </div>
-
         {/* Project Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {/* Project Card */}
-          <div className="bg-black/40 border border-lime-500/20 rounded-xl p-6 backdrop-blur-sm shadow-[0_0_30px_rgba(163,230,53,0.1)] hover:shadow-[0_0_40px_rgba(163,230,53,0.15)] transition-all duration-300 mb-5">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="px-2 py-1 bg-green-500/10 border border-green-500/30 rounded-full text-green-300 text-xs font-medium">
-                {t.project.status}
-              </span>
-            </div>
+        <div className="flex justify-center mb-16">
+          <div className="grid lg:grid-cols-1 gap-8 max-w-4xl mx-auto">
+            {t.projects.map((project, index) => (
+              <div
+                key={index}
+                className="group bg-black/40 border border-lime-500/20 rounded-2xl overflow-hidden backdrop-blur-sm shadow-[0_0_30px_rgba(163,230,53,0.1)] hover:shadow-[0_0_40px_rgba(163,230,53,0.2)] transition-all duration-500 hover:border-lime-400/40"
+              >
+                {/* Project Image */}
+                <div className="relative h-80 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                </div>
 
-            <h3 className="text-xl font-bold text-white mb-4">
-              {t.project.title}
-            </h3>
+                {/* Project Content */}
+                <div className="p-6">
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-lime-400 transition-colors">
+                        {project.title}
+                      </h3>
+                      <div className="flex items-center gap-2">
+                        <span className="px-3 py-1 bg-green-500/20 border border-green-500/40 rounded-full text-green-300 text-xs font-medium backdrop-blur-sm">
+                          {project.status}
+                        </span>
+                        <span className="px-3 py-1 bg-lime-500/20 border border-lime-500/40 rounded-full text-lime-300 text-xs font-medium backdrop-blur-sm">
+                          {project.category}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
 
-            {/* Impact Results */}
-            <div className="space-y-2 mb-4">
-              <h4 className="text-white font-medium text-sm">
-                {lang === "en" ? "Impact" : "Ndikimi"}
-              </h4>
-              {t.project.results.map((result, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-lime-500/10 border border-lime-500/30 rounded flex items-center justify-center">
+                  {/* Technologies */}
+                  <div className="mb-4">
+                    <h4 className="text-white font-medium text-sm mb-2">
+                      {lang === "en" ? "Technologies" : "Teknologjitë"}
+                    </h4>
+                  </div>
+
+                  {/* Impact Results */}
+                  <div className="mb-6">
+                    <h4 className="text-white font-medium text-sm mb-3">
+                      {lang === "en" ? "Key Results" : "Rezultatet Kryesore"}
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {project.results.map((result, resultIndex) => (
+                        <div
+                          key={resultIndex}
+                          className="flex items-start gap-2"
+                        >
+                          <div className="flex-shrink-0 w-4 h-4 bg-lime-500/10 border border-lime-500/30 rounded flex items-center justify-center mt-0.5">
+                            <svg
+                              className="w-2.5 h-2.5 text-lime-400"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          </div>
+                          <span className="text-gray-300 text-sm leading-tight">
+                            {result}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Button */}
+                  <a
+                    href={project.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-lime-500/40 bg-lime-500/10 px-6 py-3 text-lime-300 hover:bg-lime-500/20 hover:border-lime-400/60 focus:outline-none focus:ring-2 focus:ring-lime-400/50 transition-all duration-300 font-medium shadow-[0_0_15px_rgba(163,230,53,0.1)] hover:shadow-[0_0_25px_rgba(163,230,53,0.2)] group-hover:scale-105"
+                  >
+                    {lang === "en" ? "View Live Site" : "Shiko Faqen Live"}
                     <svg
-                      className="w-2.5 h-2.5 text-lime-400"
+                      className="w-4 h-4 transition-transform group-hover:translate-x-1"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -106,39 +187,15 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d="M5 13l4 4L19 7"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                       />
                     </svg>
-                  </div>
-                  <span className="text-gray-300 text-sm">{result}</span>
+                  </a>
                 </div>
-              ))}
-            </div>
-
-            <a
-              href={t.project.websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-lime-500/40 bg-lime-500/10 px-4 py-2 text-lime-300 hover:bg-lime-500/20 hover:border-lime-400/60 focus:outline-none focus:ring-2 focus:ring-lime-400/50 transition-all duration-300 text-sm font-medium shadow-[0_0_15px_rgba(163,230,53,0.1)] hover:shadow-[0_0_20px_rgba(163,230,53,0.2)]"
-            >
-              {lang === "en" ? "Visit Website" : "Vizito Faqen"}
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </a>
+              </div>
+            ))}
           </div>
-        </div>
-
+        </div>{" "}
         {/* Call to Action */}
         <div className="text-center">
           <div className="bg-black/40 border border-lime-500/20 rounded-2xl p-8 lg:p-12 backdrop-blur-sm">
