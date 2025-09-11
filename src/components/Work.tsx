@@ -10,8 +10,7 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
       projects: [
         {
           title: "Egian by Intermedica",
-          description:
-            "Modern medical clinic website with appointment booking system",
+          description: "Modern medical clinic website",
           image: "/egian.png",
           category: "Healthcare",
           results: [
@@ -42,8 +41,7 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
       projects: [
         {
           title: "Egian by Intermedica",
-          description:
-            "Faqe moderne klinike mjekësore me sistem rezervimi takimesh",
+          description: "Faqe moderne klinike mjekësore ",
           image: "/egian.png", // You can replace with actual project image
           category: "Shëndetësi",
           results: [
@@ -100,12 +98,13 @@ export default function Work({ lang = "en" }: { lang?: "en" | "al" }) {
                 className="group bg-black/40 border border-lime-500/20 rounded-2xl overflow-hidden backdrop-blur-sm shadow-[0_0_30px_rgba(163,230,53,0.1)] hover:shadow-[0_0_40px_rgba(163,230,53,0.2)] transition-all duration-500 hover:border-lime-400/40"
               >
                 {/* Project Image */}
-                <div className="relative h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden">
+                <div className="relative overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
-                    fill
-                    className="object-cover object-top"
+                    width={800}
+                    height={600}
+                    className="w-full h-auto object-cover object-top"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
                     quality={95}
                     priority={index === 0}
