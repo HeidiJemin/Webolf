@@ -25,7 +25,7 @@ export default function Contact({ lang = "en" }: { lang?: "en" | "al" }) {
       },
       info: {
         title: "Contact Information",
-        email: "info@webolf.al",
+        email: "info@webolf.tech",
         phone: "+355 69 123 4567",
         response: "Response within 24 hours",
       },
@@ -45,7 +45,7 @@ export default function Contact({ lang = "en" }: { lang?: "en" | "al" }) {
       },
       info: {
         title: "Informacioni i Kontaktit",
-        email: "info@webolf.al",
+        email: "info@webolf.tech",
         phone: "+355 69 123 4567",
         response: "Përgjigje brenda 24 orëve",
       },
